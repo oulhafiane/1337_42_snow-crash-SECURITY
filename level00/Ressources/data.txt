@@ -1,0 +1,4 @@
+cat /etc/passwd
+find / -group 3000 2>dev/null
+cat /usr/sbin/john
+cdiiddwpgswtgt => ROT11 => nottoohardhere

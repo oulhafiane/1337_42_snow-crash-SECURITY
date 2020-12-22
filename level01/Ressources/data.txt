@@ -1,0 +1,4 @@
+cat /etc/passwd
+found password of flag01 : 42hDRfypTqqnw (hash type "descrypt")
+use john the ripper tool to crack it
+42hDRfypTqqnw => abcdefg
