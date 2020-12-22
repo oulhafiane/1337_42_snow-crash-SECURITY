@@ -1,0 +1,40 @@
+ls -la
+-rwsr-sr-x 1 flag03  level03 8627 Mar  5  2016 level03
+
+level03 is a binary file which his user is flag03
+
+and also have 's' (set user ID) in his permissions 
+This is a special permission bit that allows the program, when run by any user, to be run with the effective UID of the owner of the file
+
+after decompiling it via : Retdec
+
+i found this code :
+
+====
+
+#include <stdint.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main() {
+    int32_t v1 = getegid(); // 0x80484ad
+    int32_t v2 = geteuid(); // 0x80484b6
+    setresgid(v1, v1, v1);
+    setresuid(v2, v2, v2);
+    return system("/usr/bin/env echo Exploit me");
+}
+
+====
+
+so the program get the effective user id (flag03 in this case) and group id and store them v1,v2
+and set the real user ID, the effective user ID, and the saved set-user-ID of the current process to v1,v2
+
+now the programs runs with flag03 userid
+
+after that the program call system and use env to call echo 
+
+i write a small program to call /bin/bash i named it echo and saved it in /tmp/var/echo
+
+after, i changed the PATH from the environement to look first for binaries in /tmp/var
+
+i executed the program level03 and he executed my echo(/bin/bash) located in /tmp/var with with the userid flag03
