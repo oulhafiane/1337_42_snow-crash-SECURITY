@@ -1,0 +1,4 @@
+$ cd /var/tmp
+$ ln -s ~/token test
+$ cd
+$ ./level08 /var/tmp/test
