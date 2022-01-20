@@ -2,7 +2,7 @@ ls -la
 ----r--r-- 1 flag02  level02 8302 Aug 30  2015 level02.pcap
 
 1) Download it :
-scp level02@10.11.100.78:/home/user/level02/level02.pcap .
+scp -P 4242 level02@10.11.100.90:~/level02.pcap .
 
 2) Use Wireshark to open the pcap file.
 
@@ -23,7 +23,4 @@ Login incorrect
 wwwbugs login:
 =====
 
-3) guess the password many times.
-
-I found it : ft_waNDReL0L
- 
+3) after many guesses I released that the dots in "ft_wandr...NDRel.L0L" means non-printable ascii and maybe it's a BackSpace so if we apply the BackSpaces we found : ft_waNDReL0L
